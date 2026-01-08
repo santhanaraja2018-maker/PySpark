@@ -15,4 +15,4 @@ spark.sql("SELECT * FROM people WHERE Age > 15").show()
 
 rdd = spark.sparkContext.parallelize([1,2,3,4,5])
 op=rdd.map(lambda x: x*2).collect()
-print(op).
+print(op)

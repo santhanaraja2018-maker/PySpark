@@ -11,4 +11,4 @@ df = spark.range(5)
 df.show()
 
 # Stop Spark
-spark.stop().
+spark.stop()
