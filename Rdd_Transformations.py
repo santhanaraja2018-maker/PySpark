@@ -33,10 +33,10 @@ result = sorted_rdd.collect()
 print("\nRdd elments sort by age in descending order : ",result)
 
 # to save rdds as text file
-rdd.saveAsTextFile("output.txt")
+rdd.saveAsTextFile("output")
 
 #create or read rdd from text file, read is not working in our lap
-rdd_text = spark.sparkContext.textFile("output.txt")
+rdd_text = spark.sparkContext.textFile("output")
 result = rdd_text.collect()
 print("\nRdd elments from text file : ",result)
 
