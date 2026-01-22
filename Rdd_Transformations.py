@@ -1,8 +1,7 @@
+
 from pyspark.sql import SparkSession
-spark = (SparkSession.builder.appName("MyApplication")
-                                     .config("spark.hadoop.io.native.lib.available", "false")
-                                     .config("spark.hadoop.native.lib", "false")
-                                     .config("spark.hadoop.fs.file.impl.disable.cache", "true").getOrCreate())
+
+spark = (SparkSession.builder.appName("MyApplication").getOrCreate())
 
 
 #creating an RDD from a list of tuples
@@ -34,11 +33,11 @@ result = sorted_rdd.collect()
 print("\nRdd elments sort by age in descending order : ",result)
 
 # to save rdds as text file
-rdd.saveAsTextFile("file:///C:/Users/SANTHANA RAJA S/Desktop/Git/PySpark/output.txt")
+rdd.saveAsTextFile("output.txt")
 
 #create or read rdd from text file, read is not working in our lap
-# rdd_text = spark.sparkContext.textFile("file:///C:/Users/SANTHANA RAJA S/Desktop/Git/PySpark/output.txt")
-# result = rdd_text.collect()
-# print("\nRdd elments from text file : ",result)
+rdd_text = spark.sparkContext.textFile("output.txt")
+result = rdd_text.collect()
+print("\nRdd elments from text file : ",result)
 
 spark.stop()
