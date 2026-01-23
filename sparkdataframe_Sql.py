@@ -25,10 +25,30 @@ print("\ndatas with age > 35")
 result.show()
 
 #average salary of male and female
-
 avg_sal = spark.sql ( " select Gender,avg(Amount) as AVG_SALARY  from my_table group by Gender ")
 print("\nAverage male and female salary")
 avg_sal.show()
+
+
+#creating and managing tempview
+df.createOrReplaceTempView("customers")
+
+#query the temp view
+result = spark.sql("select * from customers where age > 35")
+print ("\n Age > 35 customers")
+result.show()
+
+#check if temp view exists
+view_exists = spark.catalog.tableExists("customers")
+print("\n The view exists : ",view_exists)
+
+#Drop a temp view
+spark.catalog.dropTempView("customers")
+
+#check if temp view exists
+view_exists = spark.catalog.tableExists("customers")
+print("\n The view exists after drop : ",view_exists)
+
 
 
 spark.stop()
