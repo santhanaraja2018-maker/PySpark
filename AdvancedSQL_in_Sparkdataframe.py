@@ -18,7 +18,9 @@ salary_data = [
 
 salaries = spark.createDataFrame(salary_data,["department","id","salary"])
 
+print("\nEmployees data\n")
 employees.show()
+print("\nSalaries data\n")
 salaries.show()
 
 #register as temp views
