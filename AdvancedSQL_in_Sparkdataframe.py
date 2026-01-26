@@ -33,16 +33,27 @@ result = spark.sql (
 print("\nThe employees whose salaries are greater than the average salary")
 result.show()
 
-
-#window functions
-from pyspark.sql.window import Window
-from pyspark.sql import functions as F
+#join
 
 employee_salary = spark.sql(""" select salaries.*,employees.name from salaries 
                             left join employees on salaries.id = employees.id""")
 
 print("\nJoined Table")
 employee_salary.show()
+
+#window functions
+from pyspark.sql.window import Window
+from pyspark.sql import functions as F
+
+#aggregation
+agg_df = salaries.groupBy("department").agg(
+    F.sum("Salary").alias("Total_Salary"),
+    F.min("Salary").alias("Min_Salary"),
+    F.max("Salary").alias("Max_Salary"),
+    F.mean("Salary").alias("Avg_Salary")
+)
+print("\nAggregated values \n")
+agg_df.show()
 
 
 #creating window spec
