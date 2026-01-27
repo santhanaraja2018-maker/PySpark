@@ -7,6 +7,7 @@ spark = (SparkSession.builder.appName("MyApplication").getOrCreate())
 #creating an RDD from a list of tuples
 data = [("Alice",25),("Bob",50),("Charlie",35),("Alice",45)]
 rdd = spark.sparkContext.parallelize(data)
+print("\nRdd elements  \n",rdd)
 
 #Map transformation : convert name to upper
 mapped_rdd = rdd.map(lambda x : (x[0].upper(),x[1]))

@@ -66,9 +66,15 @@ rank = employee_salary\
     .withColumn("Rank",F.rank().over(window_spec))\
         .withColumn("Dense_Rank",F.dense_rank().over(window_spec))\
             .withColumn("Row_Number",F.row_number().over(window_spec))
+print("\nRanks by each departmnet\n")
 rank.show()
 
-
+window_spec_1 = Window.orderBy(F.desc("Salary"))
+global_rank = salaries\
+    .withColumn("Rank",F.rank().over(window_spec_1))\
+    .withColumn("Dense_Rank",F.dense_rank().over(window_spec_1))
+print("\nRanks for all departmnet\n")
+global_rank.show()
 
 spark.stop()
 
